@@ -1,9 +1,116 @@
+:root {
+  --yellow: #ffcc03;
+  --blue: #386abb;
+  --dark-blue: #1e3b71;
+  --red: #ee1515;
+  --black: #222224;
+  --white: #f0f0f0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 body {
-  color: aliceblue;
-  background-color: #111;
+  margin: 0;
   font-family: sans-serif;
-  min-height: 400vh;
+  background-color: #111;
+  color: aliceblue;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  padding: 1rem;
+  background-color: var(--dark-blue);
+}
+
+.game-container {
+  display: grid;
+  grid-template-columns: repeat(3, 110px);
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.card {
+  position: relative;
+  height: 110px;
+  border-radius: 0.5rem;
+  perspective: 500px;
+}
+
+.card-front,
+.card-back {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  border-radius: 0.5rem;
+  transition: rotate 0.3s;
+}
+
+.card-back {
+  background-image: linear-gradient(49deg, rgba(0, 0, 0, 0.1) 50%, transparent 40%),
+    linear-gradient(var(--red) 48.5%, var(--black) 48.5%, var(--black) 52.5%, var(--white) 52.5%);
+  transition: rotate 0.3s;
+}
+
+.card-front {
+  background-color: var(--blue);
+  background-image: var(--poke-image);
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-back::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: '?';
+  color: #000;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: var(--white);
+  border: 6px solid var(--black);
+  border-radius: 50%;
+  font-size: 1.5rem;
+}
+
+.card-show .card-front {
+  rotate: y 360deg;
+}
+
+.card-show .card-back {
+  rotate: y 180deg;
 }
